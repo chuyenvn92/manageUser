@@ -6,8 +6,10 @@ class TableData extends Component {
     // ham anh xa du lieu tu component cha sang component con
     mappingDataUser = () =>
         this.props.dataUser.map((value, key) => (
-            <TableDataRow name={value.name} phone={value.phone} permission={value.permission} key={key} stt={key}/>
+            <TableDataRow editUser={(user) => this.props.editUser(value)} name={value.name} phone={value.phone} permission={value.permission} key={key} stt={key}
+                changeEditUserStatus={() => this.props.changeEditUserStatus()} />
         ));
+    // this.props.editUser
     render() {
         return (
             <div className="col">

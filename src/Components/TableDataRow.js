@@ -11,6 +11,12 @@ class TableDataRow extends Component {
             return "Member"
         }
     }
+
+    // hàm nhận props truyền từ App.js xuống TableData.js
+    editUser = () => {
+        this.props.editUser();
+        this.props.changeEditUserStatus()
+    }
     render() {
         return (
             <tr>
@@ -21,7 +27,7 @@ class TableDataRow extends Component {
                 <td>
                     <div className="btn-group">
                         <div className="btn btn-warning sua">
-                            <i className="fa fa-edit">Sửa</i>
+                            <i className="fa fa-edit" onClick={() => this.editUser()}>Sửa</i>
                         </div>
                         <div className="btn btn-danger xoa">
                             <i className="fa fa-trash">Xóa</i>

@@ -13,7 +13,8 @@ class App extends Component {
       // khoi tao state roi truyen qua component con duoi dang props
       showForm: false,
       data: DataUser,
-      searchText: ''
+      searchText: '',
+      editUserStatus: false
     }
   }
 
@@ -32,6 +33,7 @@ class App extends Component {
     });
   }
 
+  // đóng gói dữ liêu từ AddUser trả lên rồi cập nhật lại data mới với setState
   getNewUserData = (name, phone, permission) => {
     var item = {};
     item.id = uuidv4();
@@ -43,7 +45,15 @@ class App extends Component {
     this.setState({
       data: items
     });
-    console.log(items)
+  }
+  editUser = (user) => {
+
+  }
+
+  changeEditUserStatus = () => {
+    this.setState({
+      editUserStatus: !this.state.editUserStatus
+    });
   }
 
   render() {
@@ -63,11 +73,12 @@ class App extends Component {
               <div className="col-12">
                 {/* truyen tu Component cha sang Component con duoi dang prop, su dung arrow function va truyen duoi dang function */}
                 <SearchBar ketnoi={() => this.doiTrangthai()} showForm={this.state.showForm}
-                  getTextSearch={(dl) => this.getTextSearch(dl)} />
+                  getTextSearch={(dl) => this.getTextSearch(dl)} editUserStatus={this.state.editUserStatus}
+                  changeEditUserStatus={() => this.changeEditUserStatus()} />
                 <hr />
               </div>
               {/* truyen du lieu qua component con thong qua props */}
-              <TableData dataUser={ketqua} />
+              <TableData dataUser={ketqua} editUser={(user) => this.editUser(user)} changeEditUserStatus={() => this.changeEditUserStatus()} />
               {/* state khi truyen duoi dang props thi k can arrow function */}
               <AddUser showForm={this.state.showForm} getNewUserData={(name, phone, permission) => this.getNewUserData(name, phone, permission)} />
             </div>

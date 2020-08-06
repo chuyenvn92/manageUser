@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import EditUser from './EditUser';
 
 class SearchBar extends Component {
     constructor(props, context) {
@@ -31,9 +32,20 @@ class SearchBar extends Component {
         });
         this.props.getTextSearch(this.state.tempValue);
     }
+
+    isShowEditForm = () => {
+        if (this.props.editUserStatus === true){
+            return <EditUser changeEditUserStatus={() => this.props.changeEditUserStatus()}/>
+        }
+    }
     render() {
         return (
             <div>
+                <div className="row">
+                    <div className="col-12">
+                        {this.isShowEditForm()}
+                    </div>
+                </div>
                 <div className="form-group">
                     <div className="btn-group">
                         <input type="text" className="form-control" placeholder="Search Tên ..." style={{ width: "500px" }}
