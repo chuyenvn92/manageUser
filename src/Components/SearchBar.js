@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 
 class SearchBar extends Component {
+
+    // hàm chỉ giữ lại 1 button khi click thêm mới
+    showButton = () => {
+        if (this.props.showForm === true) {
+            return (
+                <div className="btn btn-outline-secondary" onClick={() => this.props.ketnoi()}>Đóng</div>
+            )
+        } else {
+            return (
+                <div className="btn btn-info" onClick={() => this.props.ketnoi()}>Thêm mới</div>
+            )
+        }
+    }
     render() {
         return (
             <div>
@@ -11,8 +24,7 @@ class SearchBar extends Component {
                             Search</div>
                     </div>
                 </div>
-                <div className="btn btn-outline-secondary" onClick={() => this.props.ketnoi()}>Đóng</div>
-                <div className="btn btn-info" onClick={() => this.props.ketnoi()}>Thêm mới</div>
+                {this.showButton()}
             </div>
 
         );

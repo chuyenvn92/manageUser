@@ -5,7 +5,7 @@ class TableData extends Component {
     render() {
         return (
             <div className="col">
-                <table className="table table-striped table-hover">
+                <table className="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>STT</th>

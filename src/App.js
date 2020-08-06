@@ -28,7 +28,7 @@ class App extends Component {
             <div className="row">
               <div className="col-12">
                 {/* truyen tu Component cha sang Component con duoi dang prop, su dung arrow function va truyen duoi dang function */}
-                <SearchBar ketnoi={() => this.doiTrangthai()}/>
+                <SearchBar ketnoi={() => this.doiTrangthai()} showForm={this.state.showForm} />
                 <hr />
               </div>
               <TableData />
