@@ -5,7 +5,7 @@ class SearchBar extends Component {
         return (
             <div className="form-group">
                 <div className="btn-group">
-                    <input placeholder="Search Tên ..." style={{ width: "500px" }} />
+                    <input type="text" className="form-control" placeholder="Search Tên ..." style={{ width: "500px" }} />
                     <div className="btn btn-info" >
                         Search</div>
                 </div>

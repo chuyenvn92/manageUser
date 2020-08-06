@@ -3,6 +3,7 @@ import './App.css';
 import Header from "./Components/Header";
 import SearchBar from "./Components/SearchBar";
 import TableData from "./Components/TableData";
+import AddUser from './Components/AddUser';
 
 function App() {
   return (
@@ -13,8 +14,10 @@ function App() {
           <div className="row">
             <div className="col-12">
               <SearchBar />
+              <hr />
             </div>
-            <TableData/>
+            <TableData />
+            <AddUser />
           </div>
         </div>
       </div>
