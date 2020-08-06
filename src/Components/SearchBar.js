@@ -47,7 +47,6 @@ class SearchBar extends Component {
                 </div>
                 {this.showButton()}
             </div>
-
         );
     }
 }

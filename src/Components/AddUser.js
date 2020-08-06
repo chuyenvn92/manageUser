@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 
 class AddUser extends Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            // tạo state để lưu giữu liệu nhập vào rồi chuyển qua nút lưu
+            id: '',
+            name: '',
+            phone: '',
+            permission: ''
+        }
+    }
+
     // // xử lí logic cho nút thêm mới và đóng, chỉ xuất hiện 1 trong 2 nút
     // // dùng state để lưu trạng thái của 2 nút
     // constructor(props, context) {
@@ -44,6 +55,8 @@ class AddUser extends Component {
                             <div className="card-body">
                                 <div className="form-group">
                                     <input
+                                        onChange={(event) => { this.isChange(event) }}
+                                        name="name"
                                         type="text"
                                         className="form-control"
                                         placeholder="Tên User"
@@ -51,6 +64,8 @@ class AddUser extends Component {
                                 </div>
                                 <div className="form-group">
                                     <input
+                                        onChange={(event) => { this.isChange(event) }}
+                                        name="phone"
                                         type="text"
                                         className="form-control"
                                         placeholder="Điện thoại"
@@ -59,6 +74,8 @@ class AddUser extends Component {
                                 <div className="form-group">
                                     <div className="input-group mb-3">
                                         <select
+                                            onChange={(event) => { this.isChange(event) }}
+                                            name="permission"
                                             className="custom-select"
                                             id="inputGroupSelect02"
                                             defaultValue={"DEFAULT"}
@@ -74,6 +91,7 @@ class AddUser extends Component {
                                 </div>
                                 <div className="form-group">
                                     <input
+                                        onClick={(name, phone, permission) => this.props.getNewUserData(this.state.name,this.state.phone, this.state.permission)}
                                         type="reset"
                                         className="btn btn-block btn-primary"
                                         value="Thêm"
@@ -85,6 +103,21 @@ class AddUser extends Component {
                 </form>
             )
         }
+    }
+    // hàm lấy dữ liệu từ các ô input
+    isChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+
+        this.setState({
+            [name]: value
+        });
+        // sau khi lấy được dữ liệu là 1 mảng, đóng gói lại để gửi lên App.js
+        var item = {};
+        item.id = this.state.id;
+        item.name = this.state.name;
+        item.phone = this.state.phone;
+        item.permission = this.state.permission;
     }
 
     render() {

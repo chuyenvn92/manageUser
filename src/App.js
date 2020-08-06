@@ -3,7 +3,8 @@ import Header from './Components/Header';
 import SearchBar from './Components/SearchBar';
 import TableData from './Components/TableData';
 import AddUser from './Components/AddUser';
-import DataUser from './Data.json'
+import DataUser from './Data.json';
+import { v4 as uuidv4 } from 'uuid';
 
 class App extends Component {
   constructor(props, context) {
@@ -31,6 +32,20 @@ class App extends Component {
     });
   }
 
+  getNewUserData = (name, phone, permission) => {
+    var item = {};
+    item.id = uuidv4();
+    item.name = name;
+    item.phone = phone;
+    item.permission = permission;
+    var items = this.state.data;
+    items.push(item);
+    this.setState({
+      data: items
+    });
+    console.log(items)
+  }
+
   render() {
     // khai báo mảng trung gian để lưu lại những phần tử thỏa mãn điều kiện tìm kiếm
     var ketqua = [];
@@ -54,7 +69,7 @@ class App extends Component {
               {/* truyen du lieu qua component con thong qua props */}
               <TableData dataUser={ketqua} />
               {/* state khi truyen duoi dang props thi k can arrow function */}
-              <AddUser showForm={this.state.showForm} />
+              <AddUser showForm={this.state.showForm} getNewUserData={(name, phone, permission) => this.getNewUserData(name, phone, permission)} />
             </div>
           </div>
         </div>
