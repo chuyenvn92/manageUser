@@ -6,26 +6,28 @@ class AddUser extends Component {
     constructor(props, context) {
         super(props, context);
         this.state = {
-            trangthaiChinhsua: true
+            trangthaiChinhsua: false
         }
     }
     // hàm để hiển thị nút, khi đnag chỉnh sửa thì sẽ đóng lại và ngược lại
     showButton = () => {
         if (this.state.trangthaiChinhsua === true) {
             return (
-                <div className="btn btn-outline-secondary">Đóng</div>
+                // use onClick de goi den ham changeTrangthai, dung arrow function de goi ham
+                // khong thi se bi loi xay ra thay doi state nhieu lan
+                // viet theo kieu arrow function thi click vao moi chay, khong bi loi lap vo so lan
+                <div className="btn btn-outline-secondary" onClick={() => this.changeTrangthai()}>Đóng</div>
             )
         } else {
             return (
-                <div className="btn btn-info">Thêm mới</div>
+                <div className="btn btn-info" onClick={() => this.changeTrangthai()}>Thêm mới</div>
             )
         }
     }
-
-    render() {
-        return (
-            <div className="col-3">
-                {this.showButton()}
+    // hien thi form khi click button Dong hoac Them moi
+    showForm = () => {
+        if (this.state.trangthaiChinhsua === true) {
+            return (
                 <form>
                     <div className="card text-left mt-2">
                         <div className="card text-white bg-outline-success mb-3">
@@ -72,6 +74,26 @@ class AddUser extends Component {
                         </div>
                     </div>
                 </form>
+            )
+        }
+        else {
+            return
+        }
+    }
+
+    // hàm thay đổi trạng thái, khi ấn button thì ẩn hiển form thêm mới
+    // sử dụng setState để thay đổi trạng thái
+    changeTrangthai = () => {
+        this.setState({
+            trangthaiChinhsua: !this.state.trangthaiChinhsua
+        });
+    }
+
+    render() {
+        return (
+            <div className="col-3">
+                {this.showButton()}
+                {this.showForm()}
             </div>
         );
     }
