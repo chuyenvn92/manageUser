@@ -3,13 +3,15 @@ import Header from './Components/Header';
 import SearchBar from './Components/SearchBar';
 import TableData from './Components/TableData';
 import AddUser from './Components/AddUser';
+import DataUser from './Data.json'
 
 class App extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
       // khoi tao state roi truyen qua component con duoi dang props
-      showForm: false
+      showForm: false,
+      data: DataUser
     }
   }
 

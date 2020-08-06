@@ -1,0 +1,38 @@
+[
+    {
+        "id": 1,
+        "name": "Mai Công Chuyên",
+        "phone": "0349982248",
+        "permission": "1"
+    },
+    {
+        "id": 2,
+        "name": "Bùi Thanh Thư",
+        "phone": "0884849493",
+        "permission": "2"
+    },
+    {
+        "id": 3,
+        "name": "Đỗ Xuân Hòa",
+        "phone": "03433773637",
+        "permission": "3"
+    },
+    {
+        "id": 4,
+        "name": "Phạm Tuấn Anh",
+        "phone": "0349474747",
+        "permission": "1"
+    },
+    {
+        "id": 5,
+        "name": "Nguyễn Thị Lan Chinh",
+        "phone": "09373676474",
+        "permission": "1"
+    },
+    {
+        "id": 6,
+        "name": "Lê Văn Lơ",
+        "phone": "0939393939",
+        "permission": "1"
+    }
+]
