@@ -33,7 +33,8 @@ class App extends Component {
                 <SearchBar ketnoi={() => this.doiTrangthai()} showForm={this.state.showForm} />
                 <hr />
               </div>
-              <TableData />
+              {/* truyen du lieu qua component con thong qua props */}
+              <TableData dataUser={this.state.data}/> 
               {/* state khi truyen duoi dang props thi k can arrow function */}
               <AddUser showForm={this.state.showForm} />
             </div>

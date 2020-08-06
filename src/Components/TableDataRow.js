@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
 
 class TableDataRow extends Component {
+
+    permission = () => {
+        if (this.props.permission === '1') {
+            return "Admin"
+        } else if (this.props.permission === '2') {
+            return "Mod"
+        } else {
+            return "Member"
+        }
+    }
     render() {
         return (
             <tr>
-                <td>1</td>
-                <td>Mai Công Chuyên</td>
-                <td>0349982248</td>
-                <td>Admin</td>
+                <td>{this.props.stt + 1}</td>
+                <td>{this.props.name}</td>
+                <td>{this.props.phone}</td>
+                <td>{this.permission()}</td>
                 <td>
                     <div className="btn-group">
                         <div className="btn btn-warning sua">

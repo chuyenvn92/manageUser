@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import TableDataRow from './TableDataRow'
 
 class TableData extends Component {
+
+    // ham anh xa du lieu tu component cha sang component con
+    mappingDataUser = () =>
+        this.props.dataUser.map((value, key) => (
+            <TableDataRow name={value.name} phone={value.phone} permission={value.permission} key={key} stt={key}/>
+        ));
     render() {
         return (
             <div className="col">
@@ -16,7 +22,7 @@ class TableData extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        <TableDataRow />
+                        {this.mappingDataUser()}
                     </tbody>
                 </table>
             </div>
