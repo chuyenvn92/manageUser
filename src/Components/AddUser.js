@@ -38,7 +38,7 @@ class AddUser extends Component {
         if (this.props.showForm === true) {
             return (
                 <form>
-                    <div className="card text-left mt-2">
+                    <div className="card text-left">
                         <div className="card text-white bg-outline-success mb-3">
                             <div className="card-header">Thêm mới User</div>
                             <div className="card-body">
@@ -89,7 +89,7 @@ class AddUser extends Component {
 
     render() {
         return (
-            <div className="col-3">
+            <div>
                 {/* {this.showButton()} */}
                 {this.checkStateForm()}
             </div>

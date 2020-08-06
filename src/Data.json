@@ -21,7 +21,7 @@
         "id": 4,
         "name": "Phạm Tuấn Anh",
         "phone": "0349474747",
-        "permission": "1"
+        "permission": "2"
     },
     {
         "id": 5,
@@ -33,6 +33,6 @@
         "id": 6,
         "name": "Lê Văn Lơ",
         "phone": "0939393939",
-        "permission": "1"
+        "permission": "2"
     }
 ]
