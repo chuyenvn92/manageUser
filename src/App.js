@@ -11,7 +11,8 @@ class App extends Component {
     this.state = {
       // khoi tao state roi truyen qua component con duoi dang props
       showForm: false,
-      data: DataUser
+      data: DataUser,
+      searchText: ''
     }
   }
 
@@ -21,7 +22,23 @@ class App extends Component {
       showForm: !this.state.showForm
     });
   }
+  // hàm lấy dữ liệu từ bên componentSearch gửi về
+  // sau đó lưu dữ liệu gửi về vào trong state
+  // sử dụng forEach để duyệt từng phần tử thay vì map, vì map phải trả về giá trị còn forEach thì không
+  getTextSearch = (dl) => {
+    this.setState({
+      searchText: dl
+    });
+  }
+
   render() {
+    // khai báo mảng trung gian để lưu lại những phần tử thỏa mãn điều kiện tìm kiếm
+    var ketqua = [];
+    this.state.data.forEach((item) => {
+      if (item.name.indexOf(this.state.searchText) !== -1) {
+        ketqua.push(item);
+      }
+    });
     return (
       <div>
         <Header />
@@ -30,11 +47,12 @@ class App extends Component {
             <div className="row">
               <div className="col-12">
                 {/* truyen tu Component cha sang Component con duoi dang prop, su dung arrow function va truyen duoi dang function */}
-                <SearchBar ketnoi={() => this.doiTrangthai()} showForm={this.state.showForm} />
+                <SearchBar ketnoi={() => this.doiTrangthai()} showForm={this.state.showForm}
+                  getTextSearch={(dl) => this.getTextSearch(dl)} />
                 <hr />
               </div>
               {/* truyen du lieu qua component con thong qua props */}
-              <TableData dataUser={this.state.data}/> 
+              <TableData dataUser={ketqua} />
               {/* state khi truyen duoi dang props thi k can arrow function */}
               <AddUser showForm={this.state.showForm} />
             </div>
