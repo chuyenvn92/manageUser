@@ -1,9 +1,31 @@
 import React, { Component } from 'react';
 
 class AddUser extends Component {
+    // xử lí logic cho nút thêm mới và đóng, chỉ xuất hiện 1 trong 2 nút
+    // dùng state để lưu trạng thái của 2 nút
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            trangthaiChinhsua: true
+        }
+    }
+    // hàm để hiển thị nút, khi đnag chỉnh sửa thì sẽ đóng lại và ngược lại
+    showButton = () => {
+        if (this.state.trangthaiChinhsua === true) {
+            return (
+                <div className="btn btn-outline-secondary">Đóng</div>
+            )
+        } else {
+            return (
+                <div className="btn btn-info">Thêm mới</div>
+            )
+        }
+    }
+
     render() {
         return (
             <div className="col-3">
+                {this.showButton()}
                 <form>
                     <div className="card text-left mt-2">
                         <div className="card text-white bg-outline-success mb-3">
