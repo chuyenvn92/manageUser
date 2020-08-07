@@ -6,7 +6,8 @@ class SearchBar extends Component {
         super(props, context);
         this.state = {
             // khởi tạo state để lưu giá trị người dùng nhập vào ô search, mặc định là null
-            tempValue: ''
+            tempValue: '',
+            infoObj: {}
         }
     }
 
@@ -35,10 +36,17 @@ class SearchBar extends Component {
 
     isShowEditForm = () => {
         if (this.props.editUserStatus === true) {
-            return <EditUser userEditObject={this.props.userEditObject}
+            return <EditUser getUserInfo={(info) => this.getUserInfo(info)} userEditObject={this.props.userEditObject}
                 changeEditUserStatus={() => this.props.changeEditUserStatus()} />
         }
     }
+    getUserInfo = (info) => {
+        this.setState({
+            infoObj: info
+        });
+        this.props.getUserInfo(info)
+    }
+
     render() {
         return (
             <div>

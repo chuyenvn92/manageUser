@@ -1,6 +1,34 @@
 import React, { Component } from 'react';
 
 class EditUser extends Component {
+    // sử dụng state để lưu giữ thông tin cần sửa
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            id: this.props.userEditObject.id,
+            name: this.props.userEditObject.name,
+            phone: this.props.userEditObject.phone,
+            permission: this.props.userEditObject.permission
+        }
+    }
+    // hàm thay đổi thông tin cần sửa qua state
+    isChange = (event) => {
+        const name = event.target.name;
+        const value = event.target.value;
+        this.setState({
+            [name]: value
+        });
+    }
+    saveButton = () => {
+        this.props.changeEditUserStatus();
+        var info = {};
+        info.id = this.state.id;
+        info.name = this.state.name;
+        info.phone = this.state.phone;
+        info.permission = this.state.permission;
+        this.props.getUserInfo(info);
+    }
+
     render() {
         return (
             <div className="col-12">
@@ -50,7 +78,7 @@ class EditUser extends Component {
                                 <button
                                     type="reset"
                                     className="btn btn-block btn-primary"
-                                    onClick={() => this.props.changeEditUserStatus()}>Thêm
+                                    onClick={() => this.saveButton()}>Sửa
                                     </button>
                             </div>
                         </div>

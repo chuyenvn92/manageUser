@@ -59,6 +59,15 @@ class App extends Component {
       editUserStatus: !this.state.editUserStatus,
     });
   };
+  getUserInfo = (info) => {
+    this.state.data.forEach((value, key) => {
+      if (value.id === info.id){
+        value.name = info.name;
+        value.phone = info.phone;
+        value.permission = info.permission
+      }
+    });
+  };
 
   render() {
     // khai báo mảng trung gian để lưu lại những phần tử thỏa mãn điều kiện tìm kiếm
@@ -77,6 +86,7 @@ class App extends Component {
               <div className="col-12">
                 {/* truyen tu Component cha sang Component con duoi dang prop, su dung arrow function va truyen duoi dang function */}
                 <SearchBar
+                  getUserInfo={(info) => this.getUserInfo(info)}
                   userEditObject={this.state.userEditObject}
                   ketnoi={() => this.doiTrangthai()}
                   showForm={this.state.showForm}
