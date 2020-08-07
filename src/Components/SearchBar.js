@@ -34,8 +34,9 @@ class SearchBar extends Component {
     }
 
     isShowEditForm = () => {
-        if (this.props.editUserStatus === true){
-            return <EditUser changeEditUserStatus={() => this.props.changeEditUserStatus()}/>
+        if (this.props.editUserStatus === true) {
+            return <EditUser userEditObject={this.props.userEditObject}
+                changeEditUserStatus={() => this.props.changeEditUserStatus()} />
         }
     }
     render() {

@@ -10,6 +10,7 @@ class EditUser extends Component {
                         <div className="card-body">
                             <div className="form-group">
                                 <input
+                                    defaultValue={this.props.userEditObject.name}
                                     onChange={(event) => { this.isChange(event) }}
                                     name="name"
                                     type="text"
@@ -19,6 +20,7 @@ class EditUser extends Component {
                             </div>
                             <div className="form-group">
                                 <input
+                                    defaultValue={this.props.userEditObject.phone}
                                     onChange={(event) => { this.isChange(event) }}
                                     name="phone"
                                     type="text"
@@ -33,7 +35,7 @@ class EditUser extends Component {
                                         name="permission"
                                         className="custom-select"
                                         id="inputGroupSelect02"
-                                        defaultValue={"DEFAULT"}
+                                        defaultValue={this.props.userEditObject.permission}
                                     >
                                         <option value="DEFAULT" disabled>
                                             Chọn quyền

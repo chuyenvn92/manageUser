@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import Header from './Components/Header';
-import SearchBar from './Components/SearchBar';
-import TableData from './Components/TableData';
-import AddUser from './Components/AddUser';
-import DataUser from './Data.json';
-import { v4 as uuidv4 } from 'uuid';
+import React, { Component } from "react";
+import Header from "./Components/Header";
+import SearchBar from "./Components/SearchBar";
+import TableData from "./Components/TableData";
+import AddUser from "./Components/AddUser";
+import DataUser from "./Data.json";
+import { v4 as uuidv4 } from "uuid";
 
 class App extends Component {
   constructor(props, context) {
@@ -13,25 +13,26 @@ class App extends Component {
       // khoi tao state roi truyen qua component con duoi dang props
       showForm: false,
       data: DataUser,
-      searchText: '',
-      editUserStatus: false
-    }
+      searchText: "",
+      editUserStatus: false,
+      userEditObject: {},
+    };
   }
 
   // tạo hàm đổi trạng thái state
   doiTrangthai = () => {
     this.setState({
-      showForm: !this.state.showForm
+      showForm: !this.state.showForm,
     });
-  }
+  };
   // hàm lấy dữ liệu từ bên componentSearch gửi về
   // sau đó lưu dữ liệu gửi về vào trong state
   // sử dụng forEach để duyệt từng phần tử thay vì map, vì map phải trả về giá trị còn forEach thì không
   getTextSearch = (dl) => {
     this.setState({
-      searchText: dl
+      searchText: dl,
     });
-  }
+  };
 
   // đóng gói dữ liêu từ AddUser trả lên rồi cập nhật lại data mới với setState
   getNewUserData = (name, phone, permission) => {
@@ -43,18 +44,21 @@ class App extends Component {
     var items = this.state.data;
     items.push(item);
     this.setState({
-      data: items
+      data: items,
     });
-  }
+  };
+  // dữ liệu từ EditUser gửi lên
   editUser = (user) => {
-
-  }
+    this.setState({
+      userEditObject: user,
+    });
+  };
 
   changeEditUserStatus = () => {
     this.setState({
-      editUserStatus: !this.state.editUserStatus
+      editUserStatus: !this.state.editUserStatus,
     });
-  }
+  };
 
   render() {
     // khai báo mảng trung gian để lưu lại những phần tử thỏa mãn điều kiện tìm kiếm
@@ -72,15 +76,29 @@ class App extends Component {
             <div className="row">
               <div className="col-12">
                 {/* truyen tu Component cha sang Component con duoi dang prop, su dung arrow function va truyen duoi dang function */}
-                <SearchBar ketnoi={() => this.doiTrangthai()} showForm={this.state.showForm}
-                  getTextSearch={(dl) => this.getTextSearch(dl)} editUserStatus={this.state.editUserStatus}
-                  changeEditUserStatus={() => this.changeEditUserStatus()} />
+                <SearchBar
+                  userEditObject={this.state.userEditObject}
+                  ketnoi={() => this.doiTrangthai()}
+                  showForm={this.state.showForm}
+                  getTextSearch={(dl) => this.getTextSearch(dl)}
+                  editUserStatus={this.state.editUserStatus}
+                  changeEditUserStatus={() => this.changeEditUserStatus()}
+                />
                 <hr />
               </div>
               {/* truyen du lieu qua component con thong qua props */}
-              <TableData dataUser={ketqua} editUser={(user) => this.editUser(user)} changeEditUserStatus={() => this.changeEditUserStatus()} />
+              <TableData
+                dataUser={ketqua}
+                editUser={(user) => this.editUser(user)}
+                changeEditUserStatus={() => this.changeEditUserStatus()}
+              />
               {/* state khi truyen duoi dang props thi k can arrow function */}
-              <AddUser showForm={this.state.showForm} getNewUserData={(name, phone, permission) => this.getNewUserData(name, phone, permission)} />
+              <AddUser
+                showForm={this.state.showForm}
+                getNewUserData={(name, phone, permission) =>
+                  this.getNewUserData(name, phone, permission)
+                }
+              />
             </div>
           </div>
         </div>
