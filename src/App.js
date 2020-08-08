@@ -18,6 +18,19 @@ class App extends Component {
       userEditObject: {},
     };
   }
+  // sử dụng lifecircle để tạo dữ liệu trước khi render
+
+  componentWillMount() {
+    // kiểm tra xem có localstorage hay chưa
+    if (localStorage.getItem("userData") === null) {
+      localStorage.setItem("userData", JSON.stringify(DataUser));
+    } else {
+      var temp = JSON.parse(localStorage.getItem("userData"));
+      this.setState({
+        data: temp,
+      });
+    }
+  }
 
   // tạo hàm đổi trạng thái state
   doiTrangthai = () => {
@@ -46,6 +59,8 @@ class App extends Component {
     this.setState({
       data: items,
     });
+    // day du lieu them moi vao localstorage
+    localStorage.setItem("userData", JSON.stringify(items));
   };
   // dữ liệu từ EditUser gửi lên
   editUser = (user) => {
@@ -66,13 +81,17 @@ class App extends Component {
         value.phone = info.phone;
         value.permission = info.permission;
       }
+      // day du lieu da sua vao localstorage
+      localStorage.setItem("userData", JSON.stringify(this.state.data));
     });
   };
   deleteButon = (id) => {
     var tempData = this.state.data.filter((item) => item.id !== id);
     this.setState({
-      data: tempData
+      data: tempData,
     });
+    // day du lieu da xoa vao localstorage
+    localStorage.setItem("userData", JSON.stringify(tempData));
   };
 
   render() {
