@@ -17,6 +17,9 @@ class TableDataRow extends Component {
         this.props.editUser();
         this.props.changeEditUserStatus()
     }
+    deleteButon = (id) => {
+        this.props.deleteButon(id)
+    }
     render() {
         return (
             <tr>
@@ -30,7 +33,7 @@ class TableDataRow extends Component {
                             <i className="fa fa-edit" onClick={() => this.editUser()}>Sửa</i>
                         </div>
                         <div className="btn btn-danger xoa">
-                            <i className="fa fa-trash">Xóa</i>
+                            <i className="fa fa-trash" onClick={(id) => this.deleteButon(this.props.id)}>Xóa</i>
                         </div>
                     </div>
                 </td>

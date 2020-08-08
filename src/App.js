@@ -61,11 +61,17 @@ class App extends Component {
   };
   getUserInfo = (info) => {
     this.state.data.forEach((value, key) => {
-      if (value.id === info.id){
+      if (value.id === info.id) {
         value.name = info.name;
         value.phone = info.phone;
-        value.permission = info.permission
+        value.permission = info.permission;
       }
+    });
+  };
+  deleteButon = (id) => {
+    var tempData = this.state.data.filter((item) => item.id !== id);
+    this.setState({
+      data: tempData
     });
   };
 
@@ -98,6 +104,9 @@ class App extends Component {
               </div>
               {/* truyen du lieu qua component con thong qua props */}
               <TableData
+                deleteButon={(id) => {
+                  this.deleteButon(id);
+                }}
                 dataUser={ketqua}
                 editUser={(user) => this.editUser(user)}
                 changeEditUserStatus={() => this.changeEditUserStatus()}
